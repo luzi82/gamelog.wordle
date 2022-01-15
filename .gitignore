@@ -1,3 +1,4 @@
 /.project
 /venv/
 /wordlist/
+/__pycache__/
