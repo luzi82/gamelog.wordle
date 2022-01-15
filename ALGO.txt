@@ -1,0 +1,248 @@
+# How the code suggest words
+
+In wordle vocab list, there are 2315 possible solution, and 12972 possible input.
+The code choose the best input from the input list.
+
+Before doing any guess, there are 2315 possible solution.
+When you guess APPLE, there are 82 possible result.
+
+2315 > check APPLE
+    --O-X = 2
+    --OX- = 1
+    --OXX = 3
+    --X-- = 9
+    --X-O = 3
+    --X-X = 12
+    --XOX = 2
+    --XX- = 6
+    --XXO = 9
+    --XXX = 32
+    -OX-X = 1
+    -OXX- = 3
+    -OXXO = 3
+    -OXXX = 5
+    -XO-- = 1
+    -XO-O = 1
+    -XOOO = 1
+    -XOX- = 4
+    -XOXX = 6
+    -XX-- = 45
+    -XX-O = 24
+    -XX-X = 102
+    -XXO- = 6
+    -XXOO = 9
+    -XXOX = 27
+    -XXX- = 101
+    -XXXO = 76
+    -XXXX = 274
+    O-XX- = 1
+    O-XXO = 1
+    O-XXX = 2
+    OOOOO = 1
+    OOOOX = 1
+    OOXOX = 1
+    OOXX- = 1
+    OOXXX = 4
+    OXO-X = 1
+    OXOOO = 1
+    OXOOX = 1
+    OXX-- = 6
+    OXX-O = 4
+    OXX-X = 20
+    OXXOO = 5
+    OXXOX = 2
+    OXXX- = 14
+    OXXXO = 26
+    OXXXX = 49
+    X---X = 3
+    X-O-X = 1
+    X-OX- = 1
+    X-OXX = 5
+    X-X-- = 7
+    X-X-O = 4
+    X-X-X = 16
+    X-XO- = 1
+    X-XX- = 28
+    X-XXO = 29
+    X-XXX = 65
+    XOOX- = 1
+    XOX-- = 1
+    XOX-X = 3
+    XOXO- = 2
+    XOXOX = 2
+    XOXX- = 9
+    XOXXO = 9
+    XOXXX = 14
+    XXO-- = 4
+    XXO-X = 2
+    XXOO- = 1
+    XXOOX = 1
+    XXOX- = 10
+    XXOXO = 3
+    XXOXX = 5
+    XXX-- = 77
+    XXX-O = 31
+    XXX-X = 106
+    XXXO- = 18
+    XXXOO = 18
+    XXXOX = 62
+    XXXX- = 274
+    XXXXO = 166
+    XXXXX = 427
+  score = 2.6168466522678187
+
+When the output is --OX-, there is only 1 possble word (PAPER)
+When the output is --OXX, there are 3 possible word (HAPPY, KAPPA, SAPPY)
+
+The code try to choose a word which reduce the possible word list most. 
+
+When first guess with WATER, the possible output is as follow:
+
+2315 > check WATER
+    ----X = 2
+    ---X- = 2
+    ---XX = 3
+    --X-- = 1
+    --X-O = 1
+    --X-X = 2
+    --XOX = 1
+    --XX- = 10
+    --XXX = 10
+    -O-XX = 1
+    -OXXX = 3
+    -X--X = 4
+    -X-O- = 1
+    -X-OO = 1
+    -X-OX = 4
+    -X-X- = 2
+    -X-XX = 3
+    -XX-- = 1
+    -XX-X = 7
+    -XXO- = 3
+    -XXOO = 10
+    -XXOX = 7
+    -XXX- = 13
+    -XXXX = 19
+    O---X = 1
+    O--X- = 1
+    O-X-- = 2
+    O-X-X = 2
+    O-XX- = 2
+    O-XXX = 2
+    OO--X = 1
+    OO-X- = 1
+    OO-XX = 2
+    OOOOO = 1
+    OOOXX = 1
+    OOX-X = 1
+    OOXOO = 3
+    OOXOX = 1
+    OOXXX = 2
+    OX--- = 3
+    OX--X = 1
+    OX-X- = 3
+    OX-XX = 2
+    OXOXX = 2
+    OXX-- = 4
+    OXX-X = 13
+    OXXOO = 3
+    OXXOX = 5
+    OXXX- = 8
+    OXXXX = 16
+    X---- = 15
+    X---X = 44
+    X--OX = 1
+    X--X- = 25
+    X--XO = 1
+    X--XX = 54
+    X-O-- = 1
+    X-O-X = 3
+    X-OOO = 2
+    X-OX- = 2
+    X-OXO = 2
+    X-OXX = 7
+    X-X-- = 55
+    X-X-O = 7
+    X-X-X = 105
+    X-XO- = 1
+    X-XOO = 3
+    X-XOX = 8
+    X-XX- = 74
+    X-XXO = 17
+    X-XXX = 136
+    XO--- = 1
+    XO--X = 8
+    XO-OO = 3
+    XO-OX = 4
+    XO-X- = 4
+    XO-XO = 1
+    XO-XX = 33
+    XOO-X = 3
+    XOOOO = 4
+    XOOOX = 2
+    XOOX- = 2
+    XOOXO = 1
+    XOOXX = 18
+    XOX-- = 8
+    XOX-X = 29
+    XOXO- = 3
+    XOXOO = 18
+    XOXOX = 15
+    XOXX- = 33
+    XOXXO = 11
+    XOXXX = 86
+    XX--- = 28
+    XX--O = 2
+    XX--X = 66
+    XX-O- = 7
+    XX-OO = 7
+    XX-OX = 23
+    XX-X- = 63
+    XX-XO = 1
+    XX-XX = 127
+    XXO-- = 5
+    XXO-X = 14
+    XXOOO = 9
+    XXOOX = 6
+    XXOX- = 1
+    XXOXO = 3
+    XXOXX = 22
+    XXX-- = 101
+    XXX-O = 6
+    XXX-X = 191
+    XXXO- = 27
+    XXXOO = 77
+    XXXOX = 58
+    XXXX- = 112
+    XXXXO = 18
+    XXXXX = 297
+  score = 2.4505399568034556
+
+The biggest group in APPLE is 427, in WATER that is 297.
+So WATER can reduce the answer list better, so the score is lower.
+( score: lower is better )
+
+Score system:
+
+The score means the remain number of step estimated to solve the puzzle
+When player guess APPLE,
+The code go through the possible answer list.
+  For PAPER, the output is '--OX-'.
+    There is only 1 word in '--OX-', so the number of guess need is 2. ( APPLE > PAPER )
+  For HAPPY, the output is '--OXX'.
+    There are 3 words in '--OXX', we may need 1 extra step to guess the word, so the number of guess need is 3. ( APPLE > ????? > HAPPY )
+  For APPLE, the output is 'OOOOO'.
+    Win, so the number of guess need is 1 ( APPLE )
+
+The average number of step estimated of all 2315 words is 2.6168466522678187, that is the score.
+
+For a answer list which the size is n, the number of step estimate is:
+ceil( 1 + log( n, 3^5/e ) )
+The formula is just my estimation, may not be real.
+The function is in s01_guess.py cnt_to_score, you may change that to your formula.
+
+For the reason of ceil():
+It is common that the answer list reduced to very small, may be 3-5.
+However, we still properly need 2 steps to solve that.
+The ceil is to reduce the underestimation of those small group.
+And make the 1-size answer list shine.

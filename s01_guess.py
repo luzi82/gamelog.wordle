@@ -22,17 +22,18 @@ def main():
     tmp = guess_game(ans_txt_list,all_txt_list)
     if tmp == 'EXIT': return
 
-def guess_game(ans_txt_list,all_txt_list): # return: 'RETRY', 'EXIT'
+def guess_game(ans_txt_list,all_txt_list): # return: 'RESET', 'EXIT'
   game_ans_txt_list = copy.copy(ans_txt_list)
   while True:
     game_ans_txt_list_len = len(game_ans_txt_list)
-    guess_txt = input(f'{game_ans_txt_list_len} > ')
+    input_txt = input(f'{game_ans_txt_list_len} > ')
 
-    if guess_txt == '': continue
+    if input_txt == '': continue
 
-    if guess_txt == 'help':
+    if input_txt == 'help':
+      print('O=green -=yellow X=gray')
       print('exit')
-      print('retry')
+      print('reset')
       print('suggest')
       print('list')
       print('check GUESS')
@@ -40,11 +41,11 @@ def guess_game(ans_txt_list,all_txt_list): # return: 'RETRY', 'EXIT'
       print('compare ANSWR GUESS')
       continue
 
-    if guess_txt == 'retry': return 'RETRY'
+    if input_txt == 'reset': return 'RESET'
 
-    if guess_txt == 'exit': return 'EXIT'
+    if input_txt == 'exit': return 'EXIT'
 
-    if guess_txt == 'suggest':
+    if input_txt == 'suggest':
       print('Calculating...')
       score_txt_list = get_score_txt_list(game_ans_txt_list, all_txt_list)
       print('Suggestion:')
@@ -53,12 +54,12 @@ def guess_game(ans_txt_list,all_txt_list): # return: 'RETRY', 'EXIT'
         print(f'  {txt} - {score}')
       continue
 
-    if guess_txt == 'list':
+    if input_txt == 'list':
       for game_ans_txt in game_ans_txt_list:
         print(f'? {game_ans_txt}')
       continue
 
-    m = re.fullmatch('check ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', guess_txt)
+    m = re.fullmatch('check ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', input_txt)
     if m is not None:
       key = m.group(1).upper()
       gresult_to_cnt_dict = get_gresult_to_cnt_dict(key, game_ans_txt_list)
@@ -69,14 +70,14 @@ def guess_game(ans_txt_list,all_txt_list): # return: 'RETRY', 'EXIT'
       print(f'  score = {score}')
       continue
 
-    m = re.fullmatch('guess ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-])', guess_txt)
+    m = re.fullmatch('guess ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-])', input_txt)
     if m is not None:
       guess_txt = m.group(1).upper()
       gresult_txt = m.group(2).upper()
       game_ans_txt_list = filter_game_ans_txt_list(game_ans_txt_list, guess_txt, gresult_txt)
       continue
 
-    m = re.fullmatch('compare ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', guess_txt)
+    m = re.fullmatch('compare ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', input_txt)
     if m is not None:
       ans_txt = m.group(1).upper()
       guess_txt = m.group(2).upper()
