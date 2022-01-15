@@ -18,41 +18,41 @@ python3 s00_create_wordlist.py
 2315 > suggest
 Calculating...
 Suggestion:
-  ROATE - 2.2125269978401727
-  SOARE - 2.2315334773218143
-  TEALS - 2.2336933045356373
-  TASER - 2.2354211663066956
-  TAELS - 2.23585313174946
+  ROATE - 3.2125269978401727
+  SOARE - 3.2315334773218143
+  TEALS - 3.2336933045356373
+  TASER - 3.2354211663066956
+  TAELS - 3.23585313174946
 # ( Put ROATE to wordle, reply XX--X )
 2315 > guess roate xx--x
 50 > suggest
 Calculating...
 Suggestion:
-  TACIT - 1.66
-  TAINT - 1.66
-  CUNIT - 1.68
-  BAVIN - 1.7
-  BUIST - 1.7
+  TACIT - 2.66
+  TAINT - 2.66
+  CUNIT - 2.68
+  BAVIN - 2.7
+  BUIST - 2.7
 # ( Put TACIT to wordle, reply OOXXX )
 50 > guess tacit ooxxx
 5 > suggest
 Calculating...
 Suggestion:
-  BANAL - 1.0
-  BINAL - 1.0
-  BLAND - 1.0
-  BLANK - 1.0
-  BLAWN - 1.0
+  BANAL - 2.0
+  BINAL - 2.0
+  BLAND - 2.0
+  BLANK - 2.0
+  BLAWN - 2.0
 # ( Put BANAL to wordle, reply XOOXX )
 5 > guess banal xooxx
 1 > suggest
 Calculating...
 Suggestion:
-  TANGY - 0.0
-  AAHED - 1.0
-  AALII - 1.0
-  AARGH - 1.0
-  AARTI - 1.0
+  TANGY - 1.0
+  AAHED - 2.0
+  AALII - 2.0
+  AARGH - 2.0
+  AARTI - 2.0
 # ( TANGY is the answer )
 
 # interface commands

@@ -66,7 +66,7 @@ def guess_game(ans_txt_list,all_txt_list): # return: 'RESET', 'EXIT'
       for gresult in sorted(gresult_to_cnt_dict.keys()):
         cnt = gresult_to_cnt_dict[gresult]
         print(f'    {gresult} = {cnt}')
-      score = gresult_to_cnt_dict__to__score(gresult_to_cnt_dict)
+      score = gresult_to_cnt_dict__to__score(gresult_to_cnt_dict) + 1
       print(f'  score = {score}')
       continue
 
@@ -106,7 +106,7 @@ def get_score(txt, game_ans_txt_list):
 def _get_score(txt, game_ans_txt_list):
   gresult_to_cnt_dict = get_gresult_to_cnt_dict(txt, game_ans_txt_list)
 
-  return gresult_to_cnt_dict__to__score(gresult_to_cnt_dict)
+  return gresult_to_cnt_dict__to__score(gresult_to_cnt_dict) + 1
 
 def gresult_to_cnt_dict__to__score(gresult_to_cnt_dict):
   score_sum = 0

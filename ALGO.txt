@@ -89,7 +89,7 @@ When you guess APPLE, there are 82 possible result.
     XXXX- = 274
     XXXXO = 166
     XXXXX = 427
-  score = 2.6168466522678187
+  score = 3.6168466522678187
 
 When the output is --OX-, there is only 1 possble word (PAPER)
 When the output is --OXX, there are 3 possible word (HAPPY, KAPPA, SAPPY)
@@ -216,7 +216,7 @@ When first guess with WATER, the possible output is as follow:
     XXXX- = 112
     XXXXO = 18
     XXXXX = 297
-  score = 2.4505399568034556
+  score = 3.4505399568034556
 
 The biggest group in APPLE is 427, in WATER that is 297.
 So WATER can reduce the answer list better, so the score is lower.
@@ -233,8 +233,7 @@ The code go through the possible answer list.
     There are 3 words in '--OXX', we may need 1 extra step to guess the word, so the number of guess need is 3. ( APPLE > ????? > HAPPY )
   For APPLE, the output is 'OOOOO'.
     Win, so the number of guess need is 1 ( APPLE )
-
-The average number of step estimated of all 2315 words is 2.6168466522678187, that is the score.
+The average number of step estimated of all 2315 words is 3.6168466522678187, that is the score of APPLE.
 
 For a answer list which the size is n, the number of step estimate is:
 ceil( 1 + log( n, 3^5/e ) )
