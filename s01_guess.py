@@ -25,64 +25,66 @@ def main():
 def guess_game(ans_txt_list,all_txt_list): # return: 'RETRY', 'EXIT'
   game_ans_txt_list = copy.copy(ans_txt_list)
   while True:
-    # score_txt_list = []
-    # for txt in all_txt_list:
-    #   score = get_score(txt, game_ans_txt_list)
-    #   score_txt_list.append((score,txt))
-    
-    score_txt_list = get_score_txt_list(game_ans_txt_list, all_txt_list)
-    
-    while True:
+    game_ans_txt_list_len = len(game_ans_txt_list)
+    guess_txt = input(f'{game_ans_txt_list_len} > ')
+
+    if guess_txt == '': continue
+
+    if guess_txt == 'help':
+      print('exit')
+      print('retry')
+      print('suggest')
+      print('list')
+      print('check GUESS')
+      print('guess GUESS OX-XO')
+      print('compare ANSWR GUESS')
+      continue
+
+    if guess_txt == 'retry': return 'RETRY'
+
+    if guess_txt == 'exit': return 'EXIT'
+
+    if guess_txt == 'suggest':
+      print('Calculating...')
+      score_txt_list = get_score_txt_list(game_ans_txt_list, all_txt_list)
       print('Suggestion:')
       for score_txt in score_txt_list[:5]:
         score,txt = score_txt
         print(f'  {txt} - {score}')
+      continue
 
-      guess_txt = input('Guess: ')
-      if guess_txt == '/retry': return 'RETRY'
-      if guess_txt == '/exit': return 'EXIT'
-      if guess_txt == '/list':
-        for game_ans_txt in game_ans_txt_list:
-          print(f'? {game_ans_txt}')
-        continue
-      m = re.fullmatch('/check ([A-Z][A-Z][A-Z][A-Z][A-Z])', guess_txt)
-      if m is not None:
-        key = m.group(1)
-        gresult_to_cnt_dict = get_gresult_to_cnt_dict(key, game_ans_txt_list)
-        for gresult in sorted(gresult_to_cnt_dict.keys()):
-          cnt = gresult_to_cnt_dict[gresult]
-          print(f'    {gresult} = {cnt}')
-        score = gresult_to_cnt_dict__to__score(gresult_to_cnt_dict)
-        print(f'  score = {score}')
-        continue
-      if guess_txt not in all_txt_list:
-        print(f'{guess_txt} NOT in dictionary')
-        continue
-      break
+    if guess_txt == 'list':
+      for game_ans_txt in game_ans_txt_list:
+        print(f'? {game_ans_txt}')
+      continue
 
-    while True:
-      guess_result_txt = input('Guess result: ')
-      if guess_result_txt == '/retry': return 'RETRY'
-      if guess_result_txt == '/exit': return 'EXIT'
-      input_good = True
-      if len(guess_result_txt) != 5:
-        input_good = False
-      if any(map(lambda i:i not in 'XO-',guess_result_txt)):
-        input_good = False
-      if not input_good:
-        print('Input Error')
-        continue
-      break
+    m = re.fullmatch('check ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', guess_txt)
+    if m is not None:
+      key = m.group(1).upper()
+      gresult_to_cnt_dict = get_gresult_to_cnt_dict(key, game_ans_txt_list)
+      for gresult in sorted(gresult_to_cnt_dict.keys()):
+        cnt = gresult_to_cnt_dict[gresult]
+        print(f'    {gresult} = {cnt}')
+      score = gresult_to_cnt_dict__to__score(gresult_to_cnt_dict)
+      print(f'  score = {score}')
+      continue
 
-    if guess_result_txt == 'OOOOO':
-      print('Next')
-      return 'RETRY'
+    m = re.fullmatch('guess ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-][oxOX\\-])', guess_txt)
+    if m is not None:
+      guess_txt = m.group(1).upper()
+      gresult_txt = m.group(2).upper()
+      game_ans_txt_list = filter_game_ans_txt_list(game_ans_txt_list, guess_txt, gresult_txt)
+      continue
 
-    game_ans_txt_list = filter_game_ans_txt_list(game_ans_txt_list, guess_txt, guess_result_txt)
-    
-    if len(game_ans_txt_list) <= 0:
-      print('ERROR: No ans found')
-      return 'RETRY'
+    m = re.fullmatch('compare ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z]) ([a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z][a-zA-Z])', guess_txt)
+    if m is not None:
+      ans_txt = m.group(1).upper()
+      guess_txt = m.group(2).upper()
+      gresult = get_guess_result(ans_txt, guess_txt)
+      print(f'  {gresult}')
+      continue
+
+    print('Input ERROR')
 
 def get_score_txt_list(game_ans_txt_list, all_txt_list):
   score_txt_list = None
