@@ -3,6 +3,7 @@
 A code act as player of Wordle.
 Wordle pick a word everyday.
 The code give word suggestion according to Wordle output.
+Hard mode NOT included.
 
 # init
 python3 -m venv venv
